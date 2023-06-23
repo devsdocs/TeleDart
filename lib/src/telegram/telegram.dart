@@ -30,14 +30,14 @@ import '../util/http_client.dart';
 /// You probably want to use its methods through [TeleDart], rather
 /// than accessing them directly.
 class Telegram {
-  final String _baseUrl = 'api.telegram.org';
+  final String _baseUrl;
   final String _token;
 
-  Telegram(this._token);
+  Telegram(this._token, this._baseUrl);
 
   /// Private function to construct Telegram API Uri
   Uri _apiUri(String unencodedPath, [Map<String, dynamic>? queryParameters]) =>
-      Uri.https(_baseUrl, 'bot$_token/$unencodedPath', queryParameters);
+      Uri.http(_baseUrl, 'bot$_token/$unencodedPath', queryParameters);
 
   /// Use this method to receive incoming updates using long polling ([wiki])
   ///

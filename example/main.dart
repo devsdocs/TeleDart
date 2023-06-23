@@ -7,10 +7,12 @@ import 'package:teledart/model.dart';
 
 Future<void> main() async {
   final envVars = Platform.environment;
-  final username = (await Telegram(envVars['BOT_TOKEN']!).getMe()).username;
+  final username =
+      (await Telegram(envVars['BOT_TOKEN']!, envVars['URL']!).getMe()).username;
 
   // TeleDart uses longpoll by default if no update fetcher is specified.
-  var teledart = TeleDart(envVars['BOT_TOKEN']!, Event(username!));
+  var teledart =
+      TeleDart(envVars['BOT_TOKEN']!, envVars['URL']!, Event(username!));
 
   // In case you decided to use webhook.
   // var webhook = await Webhook.createHttpsWebhok(

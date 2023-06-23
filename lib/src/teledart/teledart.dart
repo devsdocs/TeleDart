@@ -57,9 +57,10 @@ class TeleDart extends Telegram {
   AbstractUpdateFetcher fetcher;
 
   /// Constructor in dependency injection manner
-  TeleDart(String token, this._event, {AbstractUpdateFetcher? fetcher})
-      : fetcher = fetcher ?? LongPolling(Telegram(token)),
-        super(token);
+  TeleDart(String token, String url, this._event,
+      {AbstractUpdateFetcher? fetcher})
+      : fetcher = fetcher ?? LongPolling(Telegram(token, url)),
+        super(token, url);
 
   /// Start listening to messages
   ///
